@@ -38,9 +38,10 @@
   "_spec": "vue-component-skeleton@0.0.1",
   "_where": "C:\\Users\\think\\AppData\\Roaming\\npm\\node_modules\\iat",
   "author": {
-    "name": "yangshengfu_iwm"
+    "name": "z"
   },
   "dependencies": {
+    "echarts": "^3.2.2",
     "vue": "^1.0.8"
   },
   "description": "vue component skeleton",
@@ -75,11 +76,11 @@
   "main": "dist/build.js",
   "maintainers": [
     {
-      "email": "yangxiaofuPL@163.com",
-      "name": "yangxiaofu"
+      "email": "zibo.z.liu@gmail.com",
+      "name": "z"
     }
   ],
-  "name": "vue-component-skeleton",
+  "name": "vue-directive-echarts",
   "optionalDependencies": {},
   "readme": "ERROR: No README data found!",
   "repository": {},
