@@ -25,7 +25,7 @@ export default function (Vue, options) {
 
                 let ns = this.params.ns || 'vc'
                 this.chartEventHandler = (type, params) => this.vm.$emit(`${ns}.${type}`, params)
-
+                
                 if (this.params.events && this.params.events.length > 0) {
                     this._events = Object.assign([], this.params.events)
                     this._events.forEach(type => this.echart.on(type, (params) => this.chartEventHandler(type, params)))
@@ -45,7 +45,7 @@ export default function (Vue, options) {
             Vue.nextTick(() => this.echart.setOption(newOptions))
         },
         unbind () {
-            this._events.forEach(type => this.echart.off(type))
+            if (this._events) this._events.forEach(type => this.echart.off(type))
             this.echart.dispose()
             this.el.removeEventListener('resize', this.resizeEventHandler, false)
         }
