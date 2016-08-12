@@ -2,8 +2,6 @@ import echarts from 'echarts'
 
 export default function (Vue, options) {
 
-    let _events = []
-
     Vue.directive('vc-echarts', {
         deep: true,
         params: ['loading', 'events', 'ns'],
@@ -29,8 +27,8 @@ export default function (Vue, options) {
                 this.chartEventHandler = (type, params) => this.vm.$emit(`${ns}.${type}`, params)
 
                 if (this.params.events && this.params.events.length > 0) {
-                    _events = Object.assign(_events, this.params.events)
-                    _events.forEach(type => this.echart.on(type, (params) => this.chartEventHandler(type, params)))
+                    this._events = Object.assign([], this.params.events)
+                    this._events.forEach(type => this.echart.on(type, (params) => this.chartEventHandler(type, params)))
                 }
 
                 let resizeEvent = new Event('resize')
@@ -47,7 +45,7 @@ export default function (Vue, options) {
             Vue.nextTick(() => this.echart.setOption(newOptions))
         },
         unbind () {
-            _events.forEach(type => this.echart.off(type))
+            this._events.forEach(type => this.echart.off(type))
             this.echart.dispose()
             this.el.removeEventListener('resize', this.resizeEventHandler, false)
         }
