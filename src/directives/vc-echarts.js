@@ -42,7 +42,10 @@ export default function (Vue, options) {
         },
         update (newOptions, oldOptions) {
 
-            Vue.nextTick(() => this.echart.setOption(newOptions))
+            Vue.nextTick(() => {
+                this.echart.clear()
+                this.echart.setOption(newOptions)
+            })
         },
         unbind () {
             if (this._events) this._events.forEach(type => this.echart.off(type))
